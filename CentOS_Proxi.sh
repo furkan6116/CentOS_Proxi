@@ -149,6 +149,7 @@ file_io_yukle() {
 }
 
 socks5_yukle() {
+    echo -e "\n\n\t$yesil Dante SOCKS5 Yükleniyor..\n$renkreset\n"
 }
 
 IP4=$(curl -4 -s icanhazip.com)
