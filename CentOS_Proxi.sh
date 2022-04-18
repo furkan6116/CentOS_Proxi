@@ -150,6 +150,14 @@ file_io_yukle() {
 
 socks5_yukle() {
     echo -e "\n\n\t$yesil Dante SOCKS5 Yükleniyor..\n$renkreset\n"
+
+    wget -qO dante_socks.sh https://raw.githubusercontent.com/Lozy/danted/master/install_centos.sh
+    chmod +x dante_socks.sh
+    ./dante_socks.sh --port=$SOCKS5_PORT --user=$KULLANICI --passwd=$SIFRE    # >/dev/null
+    rm -rf dante_socks.sh
+
+    iptables -I INPUT -p tcp --dport $SOCKS5_PORT -j ACCEPT
+    iptables-save                                       # >/dev/null
 }
 
 IP4=$(curl -4 -s icanhazip.com)
@@ -178,9 +186,10 @@ VERI="${YOL}/veri.txt"
 mkdir -p $YOL && cd $_
 
 echo -e "\n$mor Kaç adet IPv6 proxy oluşturmak istiyorsunuz?$kirmizi Örnek 500 : $renkreset"
+read ADET
 echo -e "\n\n"
 
-SON_PORT=$(($IPV6_ILK_PORT + 4))
+SON_PORT=$(($IPV6_ILK_PORT + $ADET))
 
 veri_olustur >$YOL/veri.txt
 iptable_olustur >$YOL/iptable_yapilandir.sh
