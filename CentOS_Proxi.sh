@@ -186,10 +186,9 @@ VERI="${YOL}/veri.txt"
 mkdir -p $YOL && cd $_
 
 echo -e "\n$mor Kaç adet IPv6 proxy oluşturmak istiyorsunuz?$kirmizi Örnek 500 : $renkreset"
-read ADET
 echo -e "\n\n"
 
-SON_PORT=$(($IPV6_ILK_PORT + $ADET))
+SON_PORT=$(($IPV6_ILK_PORT + 4))
 
 veri_olustur >$YOL/veri.txt
 iptable_olustur >$YOL/iptable_yapilandir.sh
